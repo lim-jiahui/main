@@ -1,20 +1,32 @@
 package seedu.address.logic.commands.budgetcommands;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BUDGET;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_BUDGET;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_DEBT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.attributes.Category.FOOD;
 import static seedu.address.model.attributes.Category.OTHERS;
+import static seedu.address.model.attributes.Category.TRAVEL;
+import static seedu.address.model.attributes.Category.WORK;
 import static seedu.address.testutil.TypicalBudgets.getTypicalFinanceTrackerWithBudgets;
 
 import org.junit.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.generalcommands.RedoCommand;
 import seedu.address.logic.commands.generalcommands.UndoCommand;
+import seedu.address.model.FinanceTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.attributes.Category;
+import seedu.address.model.budget.Budget;
+import seedu.address.testutil.BudgetBuilder;
 import seedu.address.testutil.EditBudgetDescriptorBuilder;
 
 /**

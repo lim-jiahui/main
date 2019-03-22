@@ -77,7 +77,7 @@ public class EditBudgetCommand extends Command {
         }
 
         if (index == -1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_BUDGET_CATEGORY);
+            throw new CommandException(Messages.MESSAGE_BUDGET_NOT_FOUND);
         }
 
         Budget budgetToEdit = lastShownList.get(index);

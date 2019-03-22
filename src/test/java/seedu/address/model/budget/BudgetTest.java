@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_BUDGET
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_DEBT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDDATE_BUDGET;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARKS_BUDGET;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARKS_DEBT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_BUDGET;
 import static seedu.address.testutil.TypicalBudgets.BUDGET;
 import static seedu.address.testutil.TypicalBudgets.FOOD_BUDGET;
@@ -63,16 +64,12 @@ public class BudgetTest {
         assertFalse(FOOD_BUDGET.isSameBudget(editedBudget));
 
         // different remarks -> returns false
-        //editedBudget = new BudgetBuilder(FOOD_BUDGET).withRemarks(VALID_REMARKS_DEBT).build();
-        //assertFalse(FOOD_BUDGET.isSameBudget(editedBudget));
+        editedBudget = new BudgetBuilder(FOOD_BUDGET).withRemarks(VALID_REMARKS_DEBT).build();
+        assertFalse(FOOD_BUDGET.isSameBudget(editedBudget));
     }
 
     @Test
     public void equals() {
-        // same values -> returns true
-        //Budget budgetCopy = new BudgetBuilder(FOOD_BUDGET).build();
-        // assertTrue(FOOD_BUDGET.equals(budgetCopy));
-
         // same object -> returns true
         assertTrue(FOOD_BUDGET.equals(FOOD_BUDGET));
 

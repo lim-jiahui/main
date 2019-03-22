@@ -51,16 +51,10 @@ public class DeleteBudgetCommandTest {
 
     @Test
     public void execute_invalidCategoryFilteredList_throwsCommandException() {
-        int index = -1;
-        for (Budget budget : model.getFilteredBudgetList()) {
-            if (budget.getCategory() == OTHERS) {
-                index = model.getFilteredBudgetList().indexOf(budget);
-            }
-        }
         DeleteBudgetCommand deleteBudgetCommand = new DeleteBudgetCommand(OTHERS);
 
         assertCommandFailure(deleteBudgetCommand, model, commandHistory,
-                Messages.MESSAGE_INVALID_BUDGET_CATEGORY);
+                Messages.MESSAGE_BUDGET_NOT_FOUND);
     }
 
     @Test
@@ -96,42 +90,12 @@ public class DeleteBudgetCommandTest {
 
         // execution failed -> finance tracker state not added into model
         assertCommandFailure(deleteBudgetCommand, model, commandHistory,
-                Messages.MESSAGE_INVALID_BUDGET_CATEGORY);
+                Messages.MESSAGE_BUDGET_NOT_FOUND);
 
         // single finance tracker state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
         assertCommandFailure(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_FAILURE);
     }
-
-    /**
-     * 1. Deletes a {@code Budget} from a filtered list.
-     * 2. Undo the deletion.
-     * 3. The unfiltered list should be shown now. Verify that the index of the previously deleted expense in the
-     * unfiltered list is different from the index at the filtered list.
-     * 4. Redo the deletion. This ensures {@code RedoCommand} deletes the expense object regardless of indexing.
-     */
-    /*@Test
-    public void executeUndoRedo_validIndexFilteredList_samePersonDeleted() throws Exception {
-        DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(INDEX_FIRST_EXPENSE);
-        Model expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
-
-        showPersonAtIndex(model, INDEX_SECOND_EXPENSE);
-        Expense expenseToDelete = model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased());
-        expectedModel.deleteExpense(expenseToDelete);
-        expectedModel.commitFinanceTracker();
-
-        // delete -> deletes second expense in unfiltered expense list / first expense in filtered expense list
-        deleteExpenseCommand.execute(model, commandHistory);
-
-        // undo -> reverts addressbook back to previous state and filtered expense list to show all persons
-        expectedModel.undoFinanceTracker();
-        assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
-
-        assertNotEquals(expenseToDelete, model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased()));
-        // redo -> deletes same second expense in unfiltered expense list
-        expectedModel.redoFinanceTracker();
-        assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
-    }*/
 
     @Test
     public void equals() {

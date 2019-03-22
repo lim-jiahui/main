@@ -131,7 +131,8 @@ public class Budget {
                 && otherBudget.getCategory().equals(getCategory())
                 && otherBudget.getAmount().equals(getAmount())
                 && otherBudget.getStartDate().equals(getStartDate())
-                && otherBudget.getEndDate().equals(getEndDate());
+                && otherBudget.getEndDate().equals(getEndDate())
+                && otherBudget.getRemarks().equals(getRemarks());
     }
 
     @Override

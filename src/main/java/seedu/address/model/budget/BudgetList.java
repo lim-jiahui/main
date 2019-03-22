@@ -105,6 +105,8 @@ public class BudgetList implements Iterable<Budget> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new BudgetNotFoundException();
+        } else {
+            internalList.remove(toRemove);
         }
     }
 
