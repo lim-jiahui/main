@@ -14,10 +14,8 @@ import seedu.address.model.attributes.Date;
  */
 public class Budget {
 
-    public static final String MESSAGE_CONSTRAINTS_START_DATE =
-            "Start date has to be today or later.";
     public static final String MESSAGE_CONSTRAINTS_END_DATE =
-            "Start date has to be before end date.";
+            "Start date has to be same as or before end date.";
     public static final String MESSAGE_CONSTRAINTS_END_DATE_AFTER_TODAY =
             "You are trying to set a budget in the past, you may enter 'deletebudget c/CATEGORY' to delete the budget"
                     + " if you no longer need it.";

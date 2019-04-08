@@ -1,32 +1,101 @@
 {
   "expenses" : [ {
-    "name" : "bkt",
+    "name" : "idk",
+    "amount" : "50",
+    "date" : "08-04-2019",
+    "category" : "FOOD",
+    "remarks" : ""
+  }, {
+    "name" : "idk",
+    "amount" : "100",
+    "date" : "08-04-2019",
+    "category" : "FOOD",
+    "remarks" : ""
+  }, {
+    "name" : "caifan",
+    "amount" : "3.1",
+    "date" : "05-04-2019",
+    "category" : "FOOD",
+    "remarks" : ""
+  }, {
+    "name" : "yumyum omnomnom",
+    "amount" : "100",
+    "date" : "05-04-2019",
+    "category" : "FOOD",
+    "remarks" : ""
+  }, {
+    "name" : "tape",
+    "amount" : "2",
+    "date" : "02-04-2019",
+    "category" : "WORK",
+    "remarks" : ""
+  }, {
+    "name" : "granola",
     "amount" : "5",
-    "date" : "23-03-2019",
+    "date" : "28-03-2019",
     "category" : "FOOD",
     "remarks" : ""
   }, {
-    "name" : "idk",
-    "amount" : "12",
-    "date" : "23-03-2019",
-    "category" : "FOOD",
+    "name" : "spotify (Recurring)",
+    "amount" : "2.5",
+    "date" : "01-03-2019",
+    "category" : "ENTERTAINMENT",
     "remarks" : ""
   }, {
-    "name" : "idk",
-    "amount" : "12",
-    "date" : "23-03-2019",
-    "category" : "TRAVEL",
+    "name" : "spotify (Recurring)",
+    "amount" : "2.5",
+    "date" : "01-02-2019",
+    "category" : "ENTERTAINMENT",
+    "remarks" : ""
+  }, {
+    "name" : "spotify (Recurring)",
+    "amount" : "2.5",
+    "date" : "01-01-2019",
+    "category" : "ENTERTAINMENT",
     "remarks" : ""
   } ],
   "debts" : [ ],
   "budgets" : [ {
-    "amount" : "500",
+    "amount" : "800",
     "category" : "FOOD",
     "startDate" : "01-04-2019",
+    "endDate" : "10-04-2019",
+    "remarks" : "",
+    "totalSpent" : "25310",
+    "percentage" : "31.637500000000003"
+  }, {
+    "amount" : "5",
+    "category" : "ENTERTAINMENT",
+    "startDate" : "05-04-2019",
     "endDate" : "30-04-2019",
     "remarks" : "",
     "totalSpent" : "0",
     "percentage" : "0.0"
+  }, {
+    "amount" : "100",
+    "category" : "SHOPPING",
+    "startDate" : "05-04-2019",
+    "endDate" : "31-12-2019",
+    "remarks" : "",
+    "totalSpent" : "0",
+    "percentage" : "0.0"
+  }, {
+    "amount" : "10",
+    "category" : "WORK",
+    "startDate" : "20-04-2019",
+    "endDate" : "20-04-2019",
+    "remarks" : "",
+    "totalSpent" : "0",
+    "percentage" : "0.0"
   } ],
-  "recurrings" : [ ]
+  "recurrings" : [ {
+    "name" : "spotify",
+    "amount" : "2.5",
+    "date" : "01-01-2019",
+    "category" : "ENTERTAINMENT",
+    "remarks" : "",
+    "frequency" : "M",
+    "occurrence" : "12",
+    "lastConvertedDate" : "2019-04-05"
+  } ]
 }

@@ -174,6 +174,7 @@ public class ModelManager implements Model {
             updatedBudget.updateTotalSpent(diff);
             updatedBudget.updatePercentage();
             versionedFinanceTracker.setBudget(targetBudget, updatedBudget);
+            updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
         }
     }
 
@@ -197,6 +198,7 @@ public class ModelManager implements Model {
             updatedBudget.updateTotalSpent(expense.getAmount().value);
             updatedBudget.updatePercentage();
             versionedFinanceTracker.setBudget(targetBudget, updatedBudget);
+            updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
         }
     }
 
@@ -298,6 +300,7 @@ public class ModelManager implements Model {
         }
         versionedFinanceTracker.setBudget(targetBudget, updatedBudget);
         versionedFinanceTracker.setBudget(targetBudget2, updatedBudget2);
+        updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
     }
 
     //=========== Debts ========================================================================================
@@ -344,8 +347,10 @@ public class ModelManager implements Model {
         int sum = 0;
         for (Expense expense : filteredExpenses) {
             if (expense.getCategory() == budget.getCategory()
-                    && expense.getDate().getLocalDate().isAfter(budget.getStartDate().getLocalDate())
-                    && expense.getDate().getLocalDate().isBefore(budget.getEndDate().getLocalDate())) {
+                    && (expense.getDate().getLocalDate().isAfter(budget.getStartDate().getLocalDate())
+                    || expense.getDate().getLocalDate().isEqual(budget.getStartDate().getLocalDate()))
+                    && (expense.getDate().getLocalDate().isBefore(budget.getEndDate().getLocalDate())
+                    || expense.getDate().getLocalDate().isEqual(budget.getEndDate().getLocalDate()))) {
                 sum += expense.getAmount().value;
             }
         }
@@ -358,6 +363,18 @@ public class ModelManager implements Model {
     @Override
     public void setBudget(Budget target, Budget editedBudget) {
         requireAllNonNull(target, editedBudget);
+        int sum = 0;
+        for (Expense expense : filteredExpenses) {
+            if (expense.getCategory() ==editedBudget.getCategory()
+                    && (expense.getDate().getLocalDate().isAfter(editedBudget.getStartDate().getLocalDate())
+                    || expense.getDate().getLocalDate().isEqual(editedBudget.getStartDate().getLocalDate()))
+                    && (expense.getDate().getLocalDate().isBefore(editedBudget.getEndDate().getLocalDate()))
+                    || expense.getDate().getLocalDate().isEqual(editedBudget.getEndDate().getLocalDate())) {
+                sum += expense.getAmount().value;
+            }
+        }
+        editedBudget.setTotalSpent(sum);
+        editedBudget.updatePercentage();
         versionedFinanceTracker.setBudget(target, editedBudget);
     }
 

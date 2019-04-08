@@ -33,7 +33,6 @@ public class AddBudgetCommand extends Command {
             + PREFIX_ENDDATE + "END_DATE "
             + "[" + PREFIX_REMARKS + "REMARKS]\n"
             + "Example: " + COMMAND_WORD + " "
-
             + PREFIX_CATEGORY + "food "
             + PREFIX_AMOUNT + "300 "
             + PREFIX_STARTDATE + "01-05-2019 "
@@ -49,10 +48,7 @@ public class AddBudgetCommand extends Command {
      */
     public AddBudgetCommand(Budget budget) {
         requireNonNull(budget);
-        if (!budget.getStartDate().isEqualOrAfterToday()) {
-            throw new IllegalArgumentException(Budget.MESSAGE_CONSTRAINTS_START_DATE);
-        }
-        if (!(budget.getEndDate().getLocalDate().isAfter(budget.getStartDate().getLocalDate()))) {
+        if (budget.getEndDate().getLocalDate().isBefore(budget.getStartDate().getLocalDate())) {
             throw new IllegalArgumentException(Budget.MESSAGE_CONSTRAINTS_END_DATE);
         }
         toAdd = budget;
